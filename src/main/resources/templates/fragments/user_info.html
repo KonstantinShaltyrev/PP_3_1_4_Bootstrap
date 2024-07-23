@@ -1,0 +1,44 @@
+<div th:fragment="user_info" th:object="${currentUser}">
+
+    <div id="nav-tab-table-header" class="container-fluid d-flex flex-row align-items-center p-3">
+        <div  class="col-md-12">
+            <h4>About user</h4>
+        </div>
+    </div>
+    <div  class="container-fluid">
+        <div  class="row">
+            <div id="user_list" class="col-md-12">
+                <table  id="user-table" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th><h5><b>ID</b></h5></th>
+                        <th><h5><b>First Name</b></h5></th>
+                        <th><h5><b>Last name</b></h5></th>
+                        <th><h5><b>Email</b></h5></th>
+                        <th><h5><b>Birthdate</b></h5></th>
+                        <th><h5><b>Phone</b></h5></th>
+                        <th><h5><b>Role</b></h5></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="table align-middle">
+                        <td th:text="*{id}"></td>
+                        <td th:text="*{firstName}"></td>
+                        <td th:text="*{lastName}"></td>
+                        <td th:text="*{email}"></td>
+                        <td th:text="*{birthday}"></td>
+                        <td th:text="*{phoneNumber}"></td>
+                        <td>
+                            <th:block th:each="role : *{roles}">
+                                <span th:if="${role.getRoleName()} == 'ROLE_ADMIN'">ADMIN</span>
+                                <span th:if="${role.getRoleName()} == 'ROLE_USER'">USER</span>
+                            </th:block>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

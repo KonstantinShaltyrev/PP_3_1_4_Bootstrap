@@ -1,0 +1,69 @@
+<div th:fragment="admin_create_form">
+
+    <div id="nav-tab-new-user-header" class="container-fluid d-flex flex-row align-items-center p-3">
+        <div  class="col-md-12">
+            <h4>Add new user</h4>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+
+                <form role="form" th:action="@{/admin/create}" th:object="${admCreateUser}" method="POST">
+                    <div class="form-group text-center">
+                        <label id="label-firstname" for="form-control-first-name" class="form-label fw-bold">First name</label>
+                        <input type="text" class="form-control" id="form-control-first-name" th:field="*{firstName}" placeholder="First name..." required/>
+                        <div style="color: red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Name error</div>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <label for="form-control-last-name" class="form-label fw-bold">Last name</label>
+                        <input type="text" class="form-control" id="form-control-last-name" th:field="*{lastName}" placeholder="Last name..." required/>
+                        <div style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Name error</div>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <label for="form-control-email" class="form-label fw-bold">Email</label>
+                        <input type="text" class="form-control" id="form-control-email" th:field="*{email}" placeholder="ex: example@domain.com" required/>
+                        <div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name error</div>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <label for="form-control-birthday" class="form-label fw-bold">Birthday</label>
+                        <input type="date" class="form-control" id="form-control-birthday" th:field="*{birthday}" placeholder="ex: 1980-01-01" required/>
+                        <div style="color: red" th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}">Name error</div>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <label for="form-control-phone" class="form-label fw-bold">Phone number</label>
+                        <input type="text" class="form-control" id="form-control-phone" th:field="*{phoneNumber}" placeholder="ex: +5 (555) 555-55-55" required/>
+                        <div style="color: red" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">Name error</div>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <label for="form-control-password" class="form-label fw-bold">Password</label>
+                        <input type="password" class="form-control" id="form-control-password" th:field="*{password}" placeholder="Password..." required/>
+                        <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name error</div>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <label for="form-control-role-selection" class="form-label fw-bold">Role</label>
+                        <select name="roleName" class="form-control" size="2" id="form-control-role-selection" required>
+                            <option value="ROLE_USER">USER</option>
+                            <option value="ROLE_ADMIN">ADMIN</option>
+                        </select>
+                    </div>
+
+                    <div class="d-md-flex justify-content-md-center">
+                        <button id="new-user-submit-button" type="submit" class="btn btn-lg btn-success">Add new user</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
+</div>

@@ -1,0 +1,12 @@
+<header th:fragment="header" id="header" class="container-fluid d-flex flex-row align-items-center justify-content-between p-3 bg-dark text-white h5" th:object="${currentUser}">
+    <div><b th:text="*{email}"/> with roles:
+        <th:block th:each="role : *{roles}">
+            <span th:if="${role.getRoleName()} == 'ROLE_ADMIN'">ADMIN</span>
+            <span th:if="${role.getRoleName()} == 'ROLE_USER'">USER</span>
+        </th:block>
+    </div>
+
+    <form class="logout" role="form" th:action="@{/logout}" method="post">
+        <button type="submit" class="btn btn-outline-dark active">Logout</button>
+    </form>
+</header>

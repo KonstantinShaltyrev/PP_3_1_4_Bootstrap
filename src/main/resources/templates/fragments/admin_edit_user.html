@@ -1,0 +1,83 @@
+<div th:fragment="admin_edit_user">
+
+    <button id="updateButton" class="btn btn-info btn-sg" type="submit" data-bs-toggle="modal"
+            data-bs-target="#modal-warning"
+            th:attr="data-bs-target='#modal-update-user'+${user.getId()}">Edit
+    </button>
+
+    <div th:id="'modal-update-user'+${user.getId()}"
+         class="modal fade" data-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit user</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form role="form"  th:action="@{/admin/update}" th:object="${user}" method="POST">
+                    <div class="modal-body">
+
+                        <label for="id"></label>
+                        <input id="id" name="id" th:value="${user.id}" hidden="hidden">
+
+                        <div class="form-group text-center">
+                            <label id="label-firstname" for="form-control-first-name" class="form-label fw-bold">First name</label>
+                            <input type="text" class="form-control" id="form-control-first-name" th:value="${user.firstName}"
+                                   name="firstName" placeholder="First name..." required minlength="2" maxlength="30"/>
+                            <!--div style="color: red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Name error</div-->
+                        </div>
+
+                        <div class="form-group text-center">
+                            <label for="form-control-last-name" class="form-label fw-bold">Last name</label>
+                            <input type="text" class="form-control" id="form-control-last-name" th:value="${user.lastName}"
+                                   name="lastName" placeholder="Last name..." required minlength="2" maxlength="30"/>
+                            <!--div style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Name error</div-->
+                        </div>
+
+                        <div class="form-group text-center">
+                            <label for="form-control-email" class="form-label fw-bold">Email</label>
+                            <input type="text" class="form-control" id="form-control-email" th:value="${user.email}"
+                                   name="email" placeholder="ex: example@domain.com" required/>
+                            <!--div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name error</div-->
+                        </div>
+
+                        <div class="form-group text-center">
+                            <label for="form-control-birthday" class="form-label fw-bold">Birthday</label>
+                            <input type="date" class="form-control" id="form-control-birthday" th:value="${user.birthday}"
+                                   name="birthday" placeholder="ex: 1980-01-01" required/>
+                            <!--div style="color: red" th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}">Name error</div-->
+                        </div>
+
+                        <div class="form-group text-center">
+                            <label for="form-control-phone" class="form-label fw-bold">Phone number</label>
+                            <input type="text" class="form-control" id="form-control-phone" th:value="${user.phoneNumber}"
+                                   name="phoneNumber" placeholder="ex: +5 (555) 555-55-55" required/>
+                            <!--div style="color: red" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">Name error</div-->
+                        </div>
+
+                        <div class="form-group text-center">
+                            <label for="form-control-password" class="form-label fw-bold">Password</label>
+                            <input type="password" class="form-control" id="form-control-password"
+                                   name="password" placeholder="Password..." required minlength="3" maxlength="100"/> <!--th:value="${user.password}"-->
+                            <!--div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name error</div-->
+                        </div>
+
+                        <div class="form-group text-center">
+                            <label for="form-control-role-selection" class="form-label fw-bold">Role</label>
+                            <select name="roleName" class="form-control" size="2" id="form-control-role-selection" required>
+                                <option value="ROLE_USER">USER</option>
+                                <option value="ROLE_ADMIN">ADMIN</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Edit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

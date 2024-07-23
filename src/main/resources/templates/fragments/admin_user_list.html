@@ -1,0 +1,52 @@
+<div th:fragment="admin_user_list">
+
+<div id="nav-tab-table-header" class="container-fluid d-flex flex-row align-items-center p-3">
+    <div  class="col-md-12">
+        <h4>All users</h4>
+    </div>
+</div>
+<div  class="container-fluid">
+    <div  class="row">
+        <div id="user_list" class="col-md-12">
+            <table  id="user-table" class="table table-striped">
+                <thead>
+                <tr>
+                    <th><h5><b>ID</b></h5></th>
+                    <th><h5><b>First Name</b></h5></th>
+                    <th><h5><b>Last name</b></h5></th>
+                    <th><h5><b>Email</b></h5></th>
+                    <th><h5><b>Birthdate</b></h5></th>
+                    <th><h5><b>Phone</b></h5></th>
+                    <th><h5><b>Role</b></h5></th>
+                    <th><h5><b>Edit</b></h5></th>
+                    <th><h5><b>Delete</b></h5></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="table align-middle" th:each="user : ${userList}">
+                    <td th:text="${user.getId()}"></td>
+                    <td th:text="${user.getFirstName()}"></td>
+                    <td th:text="${user.getLastName()}"></td>
+                    <td th:text="${user.getEmail()}"></td>
+                    <td th:text="${user.getBirthday()}"></td>
+                    <td th:text="${user.getPhoneNumber()}"></td>
+                    <td>
+                        <th:block th:each="role : ${user.getRoles()}">
+                            <span th:if="${role.getRoleName()} == 'ROLE_ADMIN'">ADMIN</span>
+                            <span th:if="${role.getRoleName()} == 'ROLE_USER'">USER</span>
+                        </th:block>
+                    </td>
+                    <td>
+                        <div th:insert="fragments/admin_edit_user.html :: admin_edit_user"> </div>
+                    </td>
+                    <td>
+                        <div th:insert="fragments/admin_delete_user.html :: admin_delete_user"> </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</div>
