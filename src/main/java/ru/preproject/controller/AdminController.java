@@ -16,7 +16,6 @@ import ru.preproject.util.UserValidator;
 
 import java.security.Principal;
 
-
 @Controller
 @RequestMapping(value = "/admin")
 public class AdminController {

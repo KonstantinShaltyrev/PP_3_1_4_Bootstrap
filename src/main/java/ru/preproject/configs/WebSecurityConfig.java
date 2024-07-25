@@ -31,7 +31,7 @@ public class WebSecurityConfig {
         http
                 .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
                         .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/user/**").hasRole("USER")
+                        .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/", "/login", "/signup", "/error").permitAll()
                         .anyRequest()
                         .authenticated())
@@ -51,7 +51,6 @@ public class WebSecurityConfig {
         return http.build();
     }
 
-    // аутентификация inMemory
     @Bean
     @Description("In memory Userdetails service registered since DB doesn't have user table" +
             " The builder will ensure the passwords are encoded before saving in memory ")
